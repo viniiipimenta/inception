@@ -13,6 +13,7 @@ build:
 
 down:
 	@printf "Stopping configuration ${name}...\n"
+	@docker exec mariadb /usr/bin/mysqldump -u wpuser --password=wppass wordpress > srcs/requirements/mariadb/conf/backup.sql
 	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
 
 re: down
